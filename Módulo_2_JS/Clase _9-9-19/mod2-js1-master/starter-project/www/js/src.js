@@ -1,5 +1,7 @@
 "use strict";
 
+/*
+
 //Declaración de funciones
 
 function estaEsSuperFacil() {
@@ -29,6 +31,9 @@ function eco(queDigo) {
 let leDigoEsto = "esto";
 eco(leDigoEsto);
 
+
+*/
+
 //TODO: ESTUDIAR LAS FUNCIONES
 
 function patasAnimal(animal) {
@@ -47,9 +52,30 @@ function patasAnimal(animal) {
       patas = 2;
       break;
     default:
-      "NO TIENE PATAS";
+      patas="NO TIENE PATAS";
       break;
   }
+  return patas;
 }
 
-console.log(patasAnimal(patas));
+console.log(patasAnimal("perro"));
+console.log(patasAnimal("araña"));
+
+// function queAnimal(animal) {
+//   let numeroDePatas;
+//   switch (animal) {
+//     case "perro":
+//       numeroDePatas = 4;
+
+//       break;
+
+//     default:
+//       numeroDePatas = "no tiene patas";
+//       break;
+//   }
+// }
+// let numeroDePatas = queAnimal("perro");
+// console.log(`el perro tiene $(numeroDePatas) patas`);
+
+
+
