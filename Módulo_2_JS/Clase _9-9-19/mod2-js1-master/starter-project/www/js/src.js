@@ -52,4 +52,4 @@ function patasAnimal(animal) {
   }
 }
 
-console.log(patasAnimal("perro"));
+console.log(patasAnimal(patas));
