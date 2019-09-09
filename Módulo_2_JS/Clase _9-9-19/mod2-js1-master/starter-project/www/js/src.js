@@ -25,7 +25,7 @@ IIFE // Autollamado de función
 
 
 (function(){
-console console.log(va sola);
+console.log(va_sola);
 ()
 
 }
@@ -43,10 +43,30 @@ eco(leDigoEsto);
 
 
 
+//TODO: ESTUDIAR LAS FUNCIONES
 
+function patasAnimal(animal) {
+    let patas;
+    switch (animal) {
+        case 'perro':
+            patas = 4;
+        break;
+        case 'araña':
+            patas = 8;
+        break;
+        case 'cienpies':
+            patas = 100;
+        break;
+        case 'canguro':
+            patas = 2;
+        break;
+        default: "NO TIENE PATAS"
+        break;
+    }
+    
+}
 
-
-
+console.log(patasAnimal('perro'))
 
 
 
