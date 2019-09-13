@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /*
 function espacios(x){
@@ -19,63 +19,50 @@ function espacios(x){
        espacios(i+1);
        asteriscos(a-i);
        document.write("<br />");
-    }
-    
+    }  
    }
 
 */
 
 function crearPiramide(numeroPisos) {
-    for (let i = 0; i < numeroPisos; i++) {
-    let piso = ''
-        for (let k = 0; k <= numeroPisos - i; k++) {
-            piso = piso + ' ';        
-        }
-        for (let j = 0; j <= i; j++) {
-            piso = piso + '*';        
-        }
-    console.log(piso)   
-        
-    }    
+  for (let i = 0; i < numeroPisos; i++) {
+    let piso = "";
+    for (let k = 0; k <= numeroPisos - i; k++) {
+      piso = piso + " ";
+    }
+    for (let j = 0; j <= i; j++) {
+      piso = piso + "*";
+    }
+    console.log(piso);
+  }
 }
 
 crearPiramide(5);
 
 var cadena = "* ";
-var piramide="";
+var piramide = "";
 
 //con for
-for(var i =0; i<5; i++){
-    piramide +=cadena;
-    document.write(piramide+ "<br>");
-
-
+for (var i = 0; i < 5; i++) {
+  piramide += cadena;
+  document.write(piramide + "<br>");
 }
 
 //con while
-var contador=0;
-piramide="";
-while(contador <5){
-    piramide +=cadena;
-    document.write(piramide+ "<br>");
-    contador++;
-
+var contador = 0;
+piramide = "";
+while (contador < 5) {
+  piramide += cadena;
+  document.write(piramide + "<br>");
+  contador++;
 }
 
 //con do while
-contador=0;
-piramide="";
+contador = 0;
+piramide = "";
 
-do{
- piramide+=cadena;
- document.write(piramide + "<br>");
- contador++;
-
-}while(contador<5)
-
-
-
-
-
-
-
+do {
+  piramide += cadena;
+  document.write(piramide + "<br>");
+  contador++;
+} while (contador < 5);
