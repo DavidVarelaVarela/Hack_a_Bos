@@ -31,7 +31,7 @@ if (enfermos[i]=== true) {
 console.log(sanos);
 
 
-
+3426141
 
 
 
