@@ -1,6 +1,6 @@
 'use strict';
 
-
+/*
 function espacios(x){
     for( i=0;i<x;i++)
      document.write("  ");//espacio en blanco
@@ -23,7 +23,17 @@ function espacios(x){
     
    }
 
+*/
 
+function crearPiramide(base) {
+    for (let i = 0; i < base; i++) {
+        if (base <= 10) {
+            console.log(base);
+        }
+       
+        
+    }    
+}
 
 
 
