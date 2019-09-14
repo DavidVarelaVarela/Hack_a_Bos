@@ -16,12 +16,14 @@ function ordenarNumeros() {
     let array1 [7,5,10,3,4]
     let array2 [7,5,10,3,4]
     for (let i = 0; i< array1.length; i++) {
-        if (array1[i] > array1[i+1]) {
-array2
+        for (let j= 0; index < array2.length; j++) {
+            if (array1[i] > array2[i+1]) 
+            
         }
         
+        
     }
-    
+    console.log(ordenarNumeros)
 }
 
 /*
