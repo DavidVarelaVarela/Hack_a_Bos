@@ -10,21 +10,29 @@ console.log(desordenado.sort(function (a, b){
 }))
 console.log(desordenado.sort((a, b) => a - b ))
 */
+const desordenado = [7,5,10,3,4]
 
-
-function ordenarNumeros() {
-    let array1 [7,5,10,3,4]
-    let array2 [7,5,10,3,4]
-    for (let i = 0; i< array1.length; i++) {
-        for (let j= 0; index < array2.length; j++) {
-            if (array1[i] > array2[i+1]) 
-            
+function ordenaElArray(elDato) {
+    const datoOrdenado = [...elDato];
+     
+    for (let i = 0; i< datoOrdenado.length; i++) {
+        for (let j= 0; j < datoOrdenado.length; j++) {
+            if (datoOrdenado[i] > datoOrdenado[j]){} 
+            const temp = datoOrdenado[j];
+            datoOrdenado[j] = datoOrdenado[i];
+            datoOrdenado[i]= temp;
+            }
         }
-        
-        
+        return datoOrdenado;
+
     }
-    console.log(ordenarNumeros)
-}
+
+
+
+const ordenado = ordenaElArray(desordenado);
+console.log(ordenado);
+
+
 
 /*
 var arr = [ 40, 1, 5, 200 ];
