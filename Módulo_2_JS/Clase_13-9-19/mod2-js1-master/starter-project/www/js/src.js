@@ -1,5 +1,6 @@
+/* eslint-disable quotes */
 /* eslint-disable vars-on-top */
-'use strict';
+"use strict";
 
 /*
 function espacios(x){
@@ -27,12 +28,12 @@ function espacios(x){
 
 function crearPiramide(numeroPisos) {
   for (let i = 0; i < numeroPisos; i++) {
-    let piso = '';
+    let piso = "";
     for (let k = 0; k <= numeroPisos - i; k++) {
-      piso = piso + ' ';
+      piso = piso + " ";
     }
     for (let j = 0; j <= i; j++) {
-      piso = piso + '*';
+      piso = piso + "*";
     }
     // eslint-disable-next-line no-console
     console.log(piso);
@@ -41,30 +42,30 @@ function crearPiramide(numeroPisos) {
 
 crearPiramide(5);
 
-var cadena = '* ';
-var piramide = '';
+var cadena = "* ";
+var piramide = "";
 
 //con for
 for (var i = 0; i < 5; i++) {
   piramide += cadena;
-  document.write(piramide + '<br>');
+  document.write(piramide + "<br>");
 }
 
 //con while
 var contador = 0;
-piramide = '';
+piramide = "";
 while (contador < 5) {
   piramide += cadena;
-  document.write(piramide + '<br>');
+  document.write(piramide + "<br>");
   contador++;
 }
 
 //con do while
 contador = 0;
-piramide = '';
+piramide = "";
 
 do {
   piramide += cadena;
-  document.write(piramide + '<br>');
+  document.write(piramide + "<br>");
   contador++;
 } while (contador < 5);
