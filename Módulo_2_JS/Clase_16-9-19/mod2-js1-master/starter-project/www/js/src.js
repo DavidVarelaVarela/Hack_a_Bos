@@ -18,9 +18,25 @@ for (const item of data){
 }
 */
 
-
+/*
 const names = [Juan, Pablo, Victor, Sara];
 const ages = [21,15, 10,30 ];
 for (const item of users);
 const users = users.map(function (names)  => (ages>18));
 console.log(users);
+*/
+
+
+const names = ["Juan", "Pablo", "Victor", "Sara"];
+const ages = [21,15, 10,30 ];
+
+function crearUsuarios = (names, index){
+return names.map((names)=>(returnname))=>{
+    return
+}
+}
+crearUsuarios(names, ages)
+
+
+
+
