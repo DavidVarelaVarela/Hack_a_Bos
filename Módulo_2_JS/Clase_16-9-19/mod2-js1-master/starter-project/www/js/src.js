@@ -27,16 +27,10 @@ console.log(users);
 */
 
 
-const names = ["Juan", "Pablo", "Victor", "Sara"];
-const ages = [21,15, 10,30 ];
+let names = [1,2,3,4,5,6,7,8,9,10];
+let names2 = names.map((names) => (names*2));
 
-function crearUsuarios = (names, index){
-return names.map((names)=>(returnname))=>{
-    return
-}
-}
-crearUsuarios(names, ages)
-
+console.log =  ( names2);
 
 
 
