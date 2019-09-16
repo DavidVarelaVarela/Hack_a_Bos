@@ -1,7 +1,5 @@
 'use strict';
 
-import { callbackify } from "util";
-
 //Ordenar numero de menos a mayor
 /*
 function ejemplo() {
@@ -50,10 +48,20 @@ function eco(unCallback) {
 eco(nuestroCallback);
 */
 
-
-
-
+/*
 const = desordenado = [7,5,10,3,4]
 function test(params) {
     desordenado.forEach(callback)
 }
+*/
+
+const desordenado = [7, 5, 10, 3, 4];
+function tiene10(datos) {
+  for (let i = 0; i < datos.length; i++) {
+    if (datos[i] === 10) {
+    }
+    return true;
+  }
+  return false
+}
+console.log(tiene10(desordenado));
