@@ -30,7 +30,7 @@ const suspects = names.map ((name,index)=>{
     return new suspect(name,eyeColor[index],height[index],tatooed[index],tip[index]);
 });
 class gadget extends person {
-    
+     function investigate() = 
 
 }
 
