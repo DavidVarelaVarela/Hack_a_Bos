@@ -23,7 +23,7 @@ this.cart.push(item);
 class shop{
     static checkout(user){
 
-    for(let  i =0; i < user.cart.length; 1++) {
+    for(let  i =0; i < user.cart.length; i++) {
         let cantidad = user.cart.filter(item => {
             return user.cart [i].name === item.name;
         });
@@ -32,7 +32,7 @@ class shop{
       console.log ("ITEM" | "UNITS" | "PRICE" | "TOTAL");
 
         }
-        )
+    }
 
 
 const pepe =new user ("pepe");
