@@ -4,6 +4,7 @@ class item{
     constructor ( name, price) {
         this.name =name;
         this.price =price;
+    
     }
  } 
 
@@ -11,6 +12,7 @@ class user {
     constructor(name){
         this.name=name;
         this.cart=[];
+        this.cart.amount =[];
 
     }
     addToCart(item){
@@ -22,13 +24,15 @@ class shop{
     static checkout(user){
 
     for(let  i =0; i < user.cart.length; 1++) {
-        let cantidad = user.cart.filter(item, => {
+        let cantidad = user.cart.filter(item => {
             return user.cart [i].name === item.name;
-        })
-            user.cart.[i].amouunt = cantidad.length;
+        });
+            user.cart.amount[user.cart[i].name] = cantidad.length;
       }
-    }
-} 
+      console.log ("ITEM" | "UNITS" | "PRICE" | "TOTAL");
+
+        }
+        )
 
 
 const pepe =new user ("pepe");
@@ -37,7 +41,6 @@ pepe.addToCart(shoes);
 pepe.addToCart(shoes);
 shop.checkout(pepe);
 console.log(pepe.cart);
-
 
 
 
