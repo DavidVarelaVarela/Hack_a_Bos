@@ -1,0 +1,14 @@
+header{
+    background-color: rebeccapurple;
+    border: 4px solid steelblue;
+    font-family: monospace;
+}
+header > h1{
+    color: yellow;
+    font-size: 2em;
+}
+p.intro{
+    border: 2px solid gray;
+    padding: 2rem;
+    background-color: lightgray;
+}
