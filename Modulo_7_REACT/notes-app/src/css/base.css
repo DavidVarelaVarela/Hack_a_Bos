@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css?family=Oswald:400,700|Press+Start+2P|Raleway:400,700&display=swap");
+
+/* Mini reset */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+/* Generic classes */
+
+body,
+#app-root {
+  background: var(--dark);
+  color: var(--bright);
+  font-family: var(--font-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  list-style: none;
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+}
+
+/* Placeholders */
+
+a.ui-action {
+  text-transform: uppercase;
+  color: var(--secondary);
+  font-family: var(--font-secondary);
+}
+
+button.image-button {
+  background-color: transparent;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: none;
+  font-size: 0;
+}
+
+/* Fixes */
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+}
+
+/* Root variables */
+
+:root {
+  --primary: #f8c51d;
+  --secondary: #c86818;
+  --dark: #000000;
+  --medium: #999999;
+  --bright: #ffffff;
+  --ok: green;
+  --ko: red;
+
+  --font-xs: 10px;
+  --font-s: 12.5px;
+  --font-m: 15px;
+  --font-l: 20px;
+  --font-xl: 25px;
+
+  --font-primary: Raleway, sans-serif;
+  --font-secondary: Oswald, sans-serif;
+  --font-special: "Press Start 2P", cursive;
+
+  --wide: 18rem;
+}

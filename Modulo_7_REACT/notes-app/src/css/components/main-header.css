@@ -1,0 +1,50 @@
+.main-header {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  color: var(--primary);
+}
+
+.main-header > h1 {
+  font-family: var(--font-special);
+  font-size: var(--font-xl);
+}
+
+.main-header.auth > * {
+  flex-basis: 33%;
+}
+
+.main-header.auth > h1 {
+  display: none;
+}
+
+.main-header > h2 {
+  flex-grow: 1;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: var(--font-secondary);
+}
+
+.main-header > .profile {
+  text-align: right;
+  font-size: var(--font-s);
+}
+
+.main-header > .profile a {
+  display: block;
+}
+
+@media (min-width: 50rem) {
+  .main-header > .actions {
+    display: none;
+  }
+
+  .main-header.auth > h1 {
+    display: initial;
+    flex-grow: 1;
+  }
+
+  .main-header > h2 {
+    display: none;
+  }
+}

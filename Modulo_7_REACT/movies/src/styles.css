@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+html,
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+main {
+  display: flex;
+  height: 100vh;
+}
+
+aside {
+  background: #ddd;
+  padding: 20px 10px;
+  border-right: 2px solid #ccc;
+  max-width: 250px;
+}
+
+section#content {
+  padding: 10px 30px;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  flex: 1;
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid #333;
+  background: #ddd;
+  padding: 5px;
+}
+
+button {
+  margin-left: 5px;
+  background: #333;
+  color: #fff;
+  padding: 5px;
+}
+
+.radio {
+  margin: 10px 0;
+}
+
+.radio label {
+  font-size: 14px;
+  color: #333;
+}
+
+.movie {
+  border: 1px solid #ccc;
+  margin: 1%;
+  text-align: center;
+}
+
+.movie-image {
+  max-width: 100%;
+  height: 250px;
+  background-size: cover;
+}
+
+.movie p {
+  height: 30px;
+}
+
+.movie small {
+  height: 20px;
+}

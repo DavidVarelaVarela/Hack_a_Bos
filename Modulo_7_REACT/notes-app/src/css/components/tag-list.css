@@ -1,0 +1,18 @@
+.tag-list {
+  background: var(--primary);
+  height: 100%;
+  padding-top: 1rem;
+}
+
+.tag-list li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--dark);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.tag-list li.selected a {
+  color: var(--bright);
+  background: var(--dark);
+}

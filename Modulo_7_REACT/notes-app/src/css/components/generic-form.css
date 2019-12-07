@@ -1,0 +1,93 @@
+form.generic {
+  color: var(--primary);
+}
+
+form.generic h2 {
+  text-transform: uppercase;
+  font-family: var(--font-secondary);
+  text-align: center;
+  font-size: var(--font-xl);
+  margin-bottom: 2rem;
+}
+
+form.generic fieldset {
+  border: 0;
+  margin-bottom: 1rem;
+}
+
+form.generic fieldset.ok {
+  color: var(--ok);
+}
+
+form.generic fieldset.ok input {
+  border-color: var(--ok);
+  color: var(--ok);
+}
+
+form.generic fieldset.ok input::selection {
+  background: var(--ok);
+  color: var(--bright);
+}
+
+form.generic fieldset.ko {
+  color: var(--ko);
+}
+
+form.generic fieldset.ko input {
+  border-color: var(--ko);
+  color: var(--ko);
+}
+
+form.generic fieldset.ko input::selection {
+  background: var(--ko);
+  color: var(--bright);
+}
+
+form.generic label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: var(--font-m);
+}
+
+form.generic input {
+  width: 100%;
+  font-size: var(--font-m);
+  color: var(--bright);
+  border: 2px solid var(--primary);
+  background-color: var(--dark);
+  padding: 0.5rem;
+}
+
+form.generic input::selection {
+  background: var(--primary);
+  color: var(--dark);
+}
+
+form.generic button {
+  font-family: var(--font-secondary);
+  text-transform: uppercase;
+  color: var(--bright);
+  background: var(--secondary);
+  border: 0;
+  padding: 0.5rem 1rem;
+  font-size: var(--font-m);
+}
+
+form.generic .actions {
+  text-align: right;
+  margin-top: 2rem;
+}
+
+form.generic .actions ul {
+  margin-top: 2rem;
+}
+
+form.generic .actions li {
+  display: inline;
+}
+
+form.generic .actions li:not(:last-child) {
+  margin-right: 0.5rem;
+  padding-right: 0.5rem;
+  border-right: 2px solid var(--secondary);
+}

@@ -1,0 +1,94 @@
+.utility-form {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.utility-form form {
+  width: 100%;
+  max-width: 20rem;
+}
+
+.app {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 50vw 100vw 100vw;
+  transform: translateX(-50vw);
+  transition: transform 0.5s ease;
+}
+
+.app > header {
+  display: grid;
+}
+
+.app > header > h2 {
+  display: none;
+}
+
+.app > .main-list {
+  transition: opacity 0.5s ease;
+}
+
+.app > .note.empty {
+  display: none;
+}
+
+.app > .note.with-content {
+  display: none;
+}
+
+.app.tags-visible {
+  transform: translateX(0);
+}
+
+.app.note-visible {
+  transform: translateX(-150vw);
+}
+
+.app.tags-visible > .main-list {
+  opacity: 0.5;
+}
+
+.app.note-visible > .note.with-content {
+  display: initial;
+}
+
+@media (min-width: 50rem) {
+  .app {
+    grid-template-columns: 10rem 20rem 1fr;
+    transform: translateX(0);
+  }
+
+  .app.note-visible {
+    transform: translateX(0);
+  }
+
+  .app > .note.empty {
+    display: initial;
+  }
+
+  .app > .note.with-content {
+    display: none;
+  }
+
+  .app.tags-visible > .main-list {
+    opacity: 1;
+  }
+
+  .app > .note.empty > header {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .app > .note.empty p {
+    font-size: var(--font-xl);
+    text-align: center;
+  }
+
+  .app.note-visible > .note.empty {
+    display: none;
+  }
+}
