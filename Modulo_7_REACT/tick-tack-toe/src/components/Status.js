@@ -1,17 +1,21 @@
-import React from "react";
+import React from 'react';
 
-function Status({ rounds, winner, next }) {
+export function Status({ rounds, winner, next }) {
   let status;
 
   if (winner) {
-    status = "Winner: " + winner;
-  } else if (rounds === 9) {
-    status = "Tie";
+    status = 'Winner: ' + winner;
   } else {
-    status = "Next player: " + next;
+    if (rounds === 9) {
+      status = 'Tie ';
+    } else {
+      status = 'Next player: ' + next;
+    }
   }
 
-  return <p className="status">{status}</p>;
+  return (
+    <div data-testid="status" className="status">
+      {status}
+    </div>
+  );
 }
-
-export { Status };

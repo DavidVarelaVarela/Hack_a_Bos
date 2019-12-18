@@ -1,10 +1,12 @@
-import React, { useEffect, useReducer } from "react";
-import { getNotes } from "../http";
-import { Header } from "../components/Header";
-import { useAuth } from "../shared/context/auth-context";
-import { TagList } from "../components/TagList";
-import { Loader } from "../components/Loader";
-import { NoteList } from "../components/NoteList";
+import React, { useEffect, useReducer } from 'react';
+import { getNotes } from '../http';
+import { Header } from '../components/Header';
+import { useAuth } from '../shared/context/auth-context';
+import { TagList } from '../components/TagList';
+import { NoteList } from '../components/NoteList';
+import { Note } from '../components/Note';
+import { useMatchMedia } from '../shared/hooks/useMatchMedia';
+import * as http from '../http/notesService';
 
 // Notes Reducer
 // -------------
@@ -21,17 +23,40 @@ import { NoteList } from "../components/NoteList";
 // }
 function notesReducer(state, action) {
   switch (action.type) {
-    case "GET_NOTES_SUCCESS":
+    case 'GET_NOTES_SUCCESS':
       return { ...state, notes: action.initialNotes };
-    case "SELECT_TAG":
+    case 'SELECT_TAG':
       return { ...state, selectedTag: action.index };
-    case "SELECT_NOTE":
+    case 'SELECT_NOTE':
       return { ...state, selectedNote: action.index };
-    case "TOGGLE_MENU":
+    case 'TOGGLE_MENU':
       return {
         ...state,
         isMenuOpened: !state.isMenuOpened,
         isNoteOpened: false
+      };
+    case 'TOGGLE_NOTE':
+      return {
+        ...state,
+        isMenuOpened: false,
+        isNoteOpened: !state.isNoteOpened
+      };
+    case 'CREATE_NOTE':
+      return { ...state, notes: [action.note, ...state.notes] };
+    case 'UPDATE_NOTE':
+      return {
+        ...state,
+        notes: state.notes.map(note => {
+          if (note.id === action.note.id) {
+            return action.note;
+          }
+          return note;
+        })
+      };
+    case 'DELETE_NOTE':
+      return {
+        ...state,
+        notes: state.notes.filter(note => note.id !== action.id)
       };
     default:
       return state;
@@ -39,7 +64,8 @@ function notesReducer(state, action) {
 }
 
 function Dashboard() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+  const isMobile = useMatchMedia('(max-width: 576px)');
 
   const [state, dispatch] = useReducer(notesReducer, {
     notes: [],
@@ -51,7 +77,7 @@ function Dashboard() {
 
   useEffect(() => {
     getNotes().then(response =>
-      dispatch({ type: "GET_NOTES_SUCCESS", initialNotes: response.data.rows })
+      dispatch({ type: 'GET_NOTES_SUCCESS', initialNotes: response.data.rows })
     );
   }, []);
 
@@ -69,11 +95,11 @@ function Dashboard() {
   // ------
   // - selectTag - Función para seleccionar un Tag a través del reducer (El index) - selectedTag
   const selectTag = selectedIndex =>
-    dispatch({ type: "SELECT_TAG", index: selectedIndex });
+    dispatch({ type: 'SELECT_TAG', index: selectedIndex });
 
   // - selectNote - Función para seleccionar una nota a través del reducer (El index) - selectedNote
   const selectNote = selectedIndex =>
-    dispatch({ type: "SELECT_NOTE", index: selectedIndex });
+    dispatch({ type: 'SELECT_NOTE', index: selectedIndex });
 
   // - filteredNotes - Función para calcular las notas que se han de mostrar en función del
   //   tag seleccionado y del texto seleccionado. Hace el cálculo a partir de notes
@@ -93,6 +119,29 @@ function Dashboard() {
   // - createNote - Permite crear una nota. Un POST al servidor
   // - saveNote - Permite modificar una nota. Un  PUT al servidor
   // - deleteNote - Permite borrar una nota
+  const createNote = async () => {
+    const response = await http.createNote({
+      title: '',
+      content: '',
+      tags: []
+    });
+    dispatch({ type: 'CREATE_NOTE', note: response.data });
+    selectNote(0);
+    selectTag(null);
+    dispatch({ type: 'TOGGLE_NOTE' });
+  };
+
+  const updateNote = async note => {
+    const response = await http.updateNote(note);
+    dispatch({ type: 'UPDATE_NOTE', note: response.data });
+  };
+
+  const deleteNote = async id => {
+    await http.deleteNote(id);
+    dispatch({ type: 'DELETE_NOTE', id });
+    selectNote(null);
+    dispatch({ type: 'TOGGLE_NOTE' });
+  };
 
   return (
     <React.Fragment>
@@ -100,16 +149,16 @@ function Dashboard() {
         title="My Notes"
         user={user}
         onToggleMenu={() => {
-          dispatch({ type: "TOGGLE_MENU" });
+          dispatch({ type: 'TOGGLE_MENU' });
         }}
-        onLogout={() => {}}
+        onLogout={logout}
       />
       <main id="dashboard">
         {/* class menu-opened abre el menu */}
         {/* class notes-opened abre las notas */}
         <div
           className={`grid ${state.isMenuOpened &&
-            "menu-opened"} ${state.isNoteOpened && "notes-opened"}`}
+            'menu-opened'} ${state.isNoteOpened && 'notes-opened'}`}
         >
           {/* <TagList tags selectedIndex onSelectTag> - INICIO */}
 
@@ -118,7 +167,7 @@ function Dashboard() {
             selectedIndex={state.selectedTag}
             onSelectTag={i => {
               selectTag(i);
-              dispatch({ type: "TOGGLE_MENU" });
+              dispatch({ type: 'TOGGLE_MENU' });
             }}
           />
 
@@ -129,7 +178,7 @@ function Dashboard() {
 
             <div class="flex">
               <input class="search" type="search" />
-              <button class="icon-button add-note" />
+              <button class="icon-button add-note" onClick={createNote} />
             </div>
 
             {/* </ Search> FIN */}
@@ -139,7 +188,10 @@ function Dashboard() {
             <NoteList
               notes={filteredNotes}
               selectedIndex={state.selectedNote}
-              onNoteSelected={selectNote}
+              onNoteSelected={i => {
+                selectNote(i);
+                dispatch({ type: 'TOGGLE_NOTE' });
+              }}
             />
 
             {/* </ NoteList> FIN */}
@@ -153,49 +205,35 @@ function Dashboard() {
 
           {/* <Note initialNote onSaveNote onDeleteNote> INICIO - Mostrar cuando hay una nota seleccionada */}
 
-          <div class="note">
-            <textarea id="title" class="title" placeholder="Untitled Note" />
-
-            {/* <TagsInput value onChange> INICIO - Permitir entrar tags */}
-
-            <div class="tags-container">
-              <ul>
-                <li>
-                  Un tag<button>x</button>
-                </li>
-                <div class="tags-input-container">
-                  <input type="text" placeholder="Enter tag" />
-                </div>
-              </ul>
-            </div>
-
-            {/* </ TagsInput> FIN */}
-
-            <div class="note-container">
-              <a href="/">
-                Remove
-                <button class="icon-button remove" />
-              </a>
-            </div>
-
-            {/* Mostrar texto en modo lectura */}
-            <div class="markdown">
-              <p>Read move</p>
-            </div>
-
-            {/* Mostrar textarea en modo edición */}
-            <textarea id="content" class="content">
-              Write mode
-            </textarea>
-          </div>
+          {state.selectedNote !== null && (
+            <Note
+              defaultNote={filteredNotes[state.selectedNote]}
+              onSaveNote={note => updateNote(note)}
+              onDeleteNote={id => deleteNote(id)}
+            />
+          )}
 
           {/* </Note> FIN */}
         </div>
 
+        {/* Back button */}
+
+        {isMobile && state.isNoteOpened && (
+          <button
+            className="icon-button add-note-mobile"
+            style={{ position: 'fixed', bottom: '20px', left: '20px' }}
+            onClick={() => dispatch({ type: 'TOGGLE_NOTE' })}
+          />
+        )}
+
+        {/* Back button end */}
+
         {/* Show / Hide loader si alguna peticion en curso*/}
+
         {/* <div className="loader">
           <Loader />
         </div> */}
+
         {/*  */}
       </main>
     </React.Fragment>

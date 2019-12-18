@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { getLatestGames } from "../http/tickTackToeService";
+import React, { useEffect, useState } from 'react';
+import { getLatestGames } from '../http/tickTackToeService';
 
 function Scoreboard({ onShowScoreBoardChange }) {
   const [games, setGames] = useState([]);

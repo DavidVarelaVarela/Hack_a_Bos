@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
-import { login, register } from "../../http";
+import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import { login, register } from '../../http';
 
 // 1) Creamos el contexto
 const AuthContext = React.createContext();
@@ -8,7 +8,7 @@ const AuthContext = React.createContext();
 // Recuperamos el token del localStorage ya que si el usuario
 // refresca la página del navegador necesito iniciar la aplicación
 // con un estado autenticado
-const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
 // 2) Creamos el custom Provider
 export function AuthProvider({ children }) {
@@ -33,7 +33,7 @@ export function AuthProvider({ children }) {
       // Si uso roles => decodificar el token para sacar el role
       // setRole(role);
       if (token) {
-        history.push("/");
+        history.push('/');
       }
     } catch (error) {
       return Promise.reject(error);
@@ -49,7 +49,7 @@ export function AuthProvider({ children }) {
       setUser(user);
       setIsAuthenticated(true);
       if (token) {
-        history.push("/");
+        history.push('/');
       }
     } catch (error) {
       return Promise.reject(error);
@@ -57,6 +57,11 @@ export function AuthProvider({ children }) {
   };
 
   // Logout => Cambiaré a false mi estado
+  const logout = () => {
+    setUser(null);
+    setIsAuthenticated(false);
+    localStorage.removeItem('currentUser');
+  };
 
   // 2.3) Devolvemos el Context
   // Si usara roles puedo devolver el role actual del usuario en lugar de isAuthenticated
@@ -69,7 +74,14 @@ export function AuthProvider({ children }) {
   // );
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, setIsAuthenticated, signIn, user, signUp }}
+      value={{
+        isAuthenticated,
+        setIsAuthenticated,
+        signIn,
+        user,
+        signUp,
+        logout
+      }}
     >
       {children}
     </AuthContext.Provider>

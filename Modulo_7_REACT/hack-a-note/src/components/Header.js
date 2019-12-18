@@ -1,15 +1,15 @@
-import React from "react";
-import { useMatchMedia } from "../shared/hooks/useMatchMedia";
-import { useLocation } from "react-router";
+import React from 'react';
+import { useMatchMedia } from '../shared/hooks/useMatchMedia';
+import { useLocation } from 'react-router';
 
 function Header({ title, user, tag, onToggleMenu, onLogout }) {
-  const isMobile = useMatchMedia("(max-width: 576px)");
+  const isMobile = useMatchMedia('(max-width: 576px)');
   const location = useLocation();
 
   return (
     <header class="header">
       {!isMobile && <h1>{title}</h1>}
-      {isMobile && location.pathname === "/" && (
+      {isMobile && location.pathname === '/' && (
         <React.Fragment>
           <div class="header-item" onClick={onToggleMenu}>
             <NavLink />
@@ -24,7 +24,15 @@ function Header({ title, user, tag, onToggleMenu, onLogout }) {
         <div class="header-item right">
           <div>
             {!isMobile && <p class="header-name">Hola {user.name}</p>}
-            <a href="/">Salir</a>
+            <a
+              href="/"
+              onClick={e => {
+                e.preventDefault();
+                onLogout();
+              }}
+            >
+              Salir
+            </a>
           </div>
         </div>
       )}

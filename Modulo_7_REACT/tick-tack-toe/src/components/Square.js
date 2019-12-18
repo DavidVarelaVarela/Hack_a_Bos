@@ -1,11 +1,9 @@
-import React from "react";
+import React from 'react';
 
-function Square({ value, onChangeSquare }) {
+export function Square({ value, onChangeSquare }) {
   return (
-    <button className="square" onClick={onChangeSquare}>
+    <button className="square" onClick={onChangeSquare} data-testid="square">
       {value}
     </button>
   );
 }
-
-export { Square };
